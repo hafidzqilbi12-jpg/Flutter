@@ -64,6 +64,7 @@ final List<Map<String, dynamic>> products = [
   },
 ];
 
+// Dynamic List untuk berita
 final List<Map<String, dynamic>> news = [
   {
     'title': 'Promo Makan Hemat untuk Mahasiswa',
@@ -93,7 +94,6 @@ class Flex5 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF7F8FC),
       appBar: _appBar(),
       body: ListView(
         padding: const EdgeInsets.only(bottom: 20),
@@ -101,7 +101,7 @@ class Flex5 extends StatelessWidget {
           // Banner promo
           Container(
             height: 160,
-            margin: const EdgeInsets.fromLTRB(10, 14, 10, 14),
+            margin: const EdgeInsets.fromLTRB(14, 14, 21, 14),
             clipBehavior: Clip.antiAlias,
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
             child: Stack(
@@ -168,8 +168,6 @@ class Flex5 extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
                       foregroundColor: Colors.orange,
-                      minimumSize: const Size(0, 34),
-                      padding: const EdgeInsets.symmetric(horizontal: 18),
                     ),
                     onPressed: () {},
                     child: const Text('Lihat Promo'),
@@ -214,7 +212,7 @@ class Flex5 extends StatelessWidget {
 
           // Kategori dapat digeser ke kanan dan kiri
           SizedBox(
-            height: 80,
+            height: 100,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -224,7 +222,7 @@ class Flex5 extends StatelessWidget {
                 final isSelected = index == 0;
 
                 return Container(
-                  width: 80,
+                  width: 100,
                   margin: const EdgeInsets.only(right: 9),
                   decoration: BoxDecoration(
                     color: isSelected ? Colors.orange : Colors.white,
@@ -594,27 +592,23 @@ class Flex5 extends StatelessWidget {
 
   AppBar _appBar() {
     return AppBar(
-      backgroundColor: Colors.white,
-      surfaceTintColor: Colors.white,
-      elevation: 0,
-      titleSpacing: 16,
-      title: const Column(
+      title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             'KantinKampus',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
           ),
           Text(
             'Makan enak, harga bersahabat',
-            style: TextStyle(fontSize: 10, color: Colors.grey),
+            style: TextStyle(fontSize: 11, color: Colors.grey),
           ),
         ],
       ),
       actions: [
         IconButton(
           onPressed: () {},
-          icon: const Icon(Icons.shopping_cart_outlined, size: 21),
+          icon: Icon(Icons.shopping_cart_outlined, size: 21),
         ),
       ],
     );
