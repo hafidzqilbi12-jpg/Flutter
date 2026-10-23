@@ -64,7 +64,6 @@ final List<Map<String, dynamic>> products = [
   },
 ];
 
-// Dynamic List untuk berita
 final List<Map<String, dynamic>> news = [
   {
     'title': 'Promo Makan Hemat untuk Mahasiswa',
@@ -94,344 +93,282 @@ class Flex5 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFF7F8FC),
       appBar: _appBar(),
       body: ListView(
+        padding: const EdgeInsets.only(bottom: 20),
         children: [
+          // Banner promo
           Container(
-            height: 210,
-            margin: EdgeInsets.fromLTRB(21, 16, 21, 16),
+            height: 160,
+            margin: const EdgeInsets.fromLTRB(10, 14, 10, 14),
             clipBehavior: Clip.antiAlias,
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(24)),
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
             child: Stack(
               fit: StackFit.expand,
               children: [
                 Image.network(
-                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR20jasGjIiZqybQ-PFqYR8T0yESdRXE6K7cELqsrNe4vDqSFCoWxE4t7Ze&s=10',
+                  'https://images.unsplash.com/photo-1547592180-85f173990554?w=1000',
                   fit: BoxFit.cover,
                   errorBuilder: (context, error, stackTrace) {
-                    return Container(color: Colors.yellow);
+                    return Container(color: Colors.orange.shade100);
                   },
                 ),
                 Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
-                      begin: AlignmentGeometry.centerLeft,
-                      end: AlignmentGeometry.centerRight,
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
                       colors: [
                         Colors.black.withValues(alpha: 0.75),
-                        Colors.black.withValues(alpha: 0.10),
+                        Colors.black.withValues(alpha: 0.05),
                       ],
                     ),
                   ),
                 ),
                 Positioned(
-                  top: 20,
-                  left: 20,
+                  top: 16,
+                  left: 15,
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 6,
+                    ),
                     decoration: BoxDecoration(
                       color: Colors.orange,
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    child: Text(
-                      "PROMO HARI INI",
+                    child: const Text(
+                      'PROMO HARI INI',
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
-                        fontSize: 11,
+                        fontSize: 10,
                       ),
                     ),
                   ),
                 ),
-                Positioned(
-                  top: 65,
-                  left: 20,
+                const Positioned(
+                  top: 48,
+                  left: 15,
                   child: Text(
-                    "Diskon Hingga \n30%",
+                    'Diskon hingga\n30%',
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
-                      fontSize: 28,
-                      height: 1.1,
+                      fontSize: 24,
+                      height: 1.05,
                     ),
                   ),
                 ),
                 Positioned(
-                  left: 20,
-                  bottom: 20,
+                  left: 15,
+                  bottom: 14,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
                       foregroundColor: Colors.orange,
+                      minimumSize: const Size(0, 34),
+                      padding: const EdgeInsets.symmetric(horizontal: 18),
                     ),
                     onPressed: () {},
-                    child: Text("Lihat promo"),
+                    child: const Text('Lihat Promo'),
                   ),
                 ),
               ],
             ),
           ),
+
+          // Informasi layanan
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 21),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Row(
-              spacing: 12,
               children: [
                 Expanded(
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 12),
-                    height: 100,
-                    decoration: BoxDecoration(
-                      border: BoxBorder.all(color: Colors.grey.shade400),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Row(
-                      spacing: 8,
-                      children: [
-                        Container(
-                          width: 38,
-                          height: 38,
-                          decoration: BoxDecoration(
-                            color: Colors.orange,
-                            shape: BoxShape.circle,
-                          ),
-                          child: Icon(
-                            Icons.delivery_dining_sharp,
-                            color: Colors.white,
-                          ),
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Gratis Ongkir",
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(
-                              "Min. pembelian",
-                              style: TextStyle(
-                                fontSize: 11,
-                                color: Colors.grey.shade500,
-                              ),
-                            ),
-                            Text(
-                              "Rp 30.000",
-                              style: TextStyle(
-                                fontSize: 11,
-                                color: Colors.grey.shade500,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                  child: _serviceCard(
+                    Icons.delivery_dining,
+                    'Gratis Ongkir',
+                    'Min. pembelian',
+                    'Rp30.000',
                   ),
                 ),
+                const SizedBox(width: 10),
                 Expanded(
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 12),
-                    height: 100,
-                    decoration: BoxDecoration(
-                      border: BoxBorder.all(color: Colors.grey.shade400),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Row(
-                      spacing: 8,
-                      children: [
-                        Container(
-                          width: 38,
-                          height: 38,
-                          decoration: BoxDecoration(
-                            color: Colors.orange,
-                            shape: BoxShape.circle,
-                          ),
-                          child: Icon(Icons.access_time, color: Colors.white),
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Buka Hari Ini",
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(
-                              "08:00 - 17:00",
-                              style: TextStyle(
-                                fontSize: 11,
-                                color: Colors.grey.shade500,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                  child: _serviceCard(
+                    Icons.access_time,
+                    'Buka Hari Ini',
+                    '08.00 - 17.00',
+                    '',
                   ),
                 ),
               ],
             ),
           ),
-          SizedBox(height: 20),
-          // Test grid view
-          GridView.builder(
-            padding: EdgeInsets.symmetric(horizontal: 15),
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 15,
+
+          const SizedBox(height: 26),
+
+          // Judul kategori
+          _sectionTitle('Kategori', 'Lihat Semua'),
+
+          const SizedBox(height: 12),
+
+          // Kategori dapat digeser ke kanan dan kiri
+          SizedBox(
+            height: 80,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              itemCount: categories.length,
+              itemBuilder: (context, index) {
+                final category = categories[index];
+                final isSelected = index == 0;
+
+                return Container(
+                  width: 80,
+                  margin: const EdgeInsets.only(right: 9),
+                  decoration: BoxDecoration(
+                    color: isSelected ? Colors.orange : Colors.white,
+                    borderRadius: BorderRadius.circular(14),
+                    border: Border.all(color: Colors.grey.shade200),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        category['icon'] as IconData,
+                        color: isSelected ? Colors.white : Colors.orange,
+                        size: 23,
+                      ),
+                      const SizedBox(height: 7),
+                      Text(
+                        category['name'] as String,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 10,
+                          color: isSelected ? Colors.white : Colors.black87,
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
             ),
-            itemCount: categories.length,
-            itemBuilder: (context, index) {
-              final kategori = categories[index];
-              return Container(
-                width: 50,
-                height: 50,
-                color: Colors.yellow,
-                child: Center(child: Text(kategori['name'] as String)),
-              );
-            },
           ),
+
+          const SizedBox(height: 26),
+
+          // Menu favorit
+          _sectionTitle('Menu Favorit', 'Lihat Semua'),
+
+          const SizedBox(height: 12),
+
           GridView.builder(
-            padding: EdgeInsets.all(15),
+            padding: const EdgeInsets.symmetric(horizontal: 14),
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
-              crossAxisSpacing: 20,
-              mainAxisSpacing: 15,
-              childAspectRatio: 0.77,
+              crossAxisSpacing: 12,
+              mainAxisSpacing: 12,
+              childAspectRatio: 0.78,
             ),
             itemCount: products.length,
             itemBuilder: (context, index) {
               final product = products[index];
+              return _productCard(product);
+            },
+          ),
+
+          const SizedBox(height: 22),
+
+          // Berita kampus
+          _sectionTitle('Berita Kampus', 'Lihat Semua'),
+
+          const SizedBox(height: 12),
+
+          ListView.builder(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: news.length,
+            itemBuilder: (context, index) {
+              final item = news[index];
               return Container(
-                clipBehavior: Clip.antiAlias,
+                height: 78,
+                margin: const EdgeInsets.only(bottom: 9),
+                padding: const EdgeInsets.all(7),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(14),
+                  border: Border.all(color: Colors.grey.shade200),
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                child: Row(
                   children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.network(
+                        item['image'] as String,
+                        width: 65,
+                        height: 65,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Container(
+                            width: 65,
+                            height: 65,
+                            color: Colors.orange.shade100,
+                            child: const Icon(
+                              Icons.restaurant,
+                              color: Colors.orange,
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                    const SizedBox(width: 9),
                     Expanded(
-                      flex: 6,
-                      child: Stack(
-                        fit: StackFit.expand,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Image.network(
-                            product['image'],
-                            fit: BoxFit.cover,
-                            errorBuilder: (context, error, stackTrace) =>
-                                Container(color: Colors.orange.shade100),
-                          ),
-                          Positioned(
-                            top: 12,
-                            left: 12,
-                            child: Container(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 10,
-                                vertical: 6,
-                              ),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    Icons.star,
-                                    color: Colors.amber,
-                                    size: 17,
-                                  ),
-                                  SizedBox(width: 4),
-                                  Text('${product['rating']}'),
-                                ],
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 7,
+                              vertical: 3,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.orange.shade50,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Text(
+                              item['category'] as String,
+                              style: const TextStyle(
+                                color: Colors.orange,
+                                fontSize: 9,
                               ),
                             ),
                           ),
-
-                          Positioned(
-                            right: 10,
-                            bottom: 12,
-                            child: Container(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 12,
-                                vertical: 7,
-                              ),
-                              decoration: BoxDecoration(
-                                color: Colors.green,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: Text(
-                                'Tersedia',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
+                          const SizedBox(height: 4),
+                          Text(
+                            item['title'] as String,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              fontSize: 11,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(height: 3),
+                          Text(
+                            item['date'] as String,
+                            style: TextStyle(
+                              color: Colors.grey.shade500,
+                              fontSize: 9,
                             ),
                           ),
                         ],
                       ),
                     ),
-                    Expanded(
-                      flex: 4,
-                      child: Padding(
-                        padding: EdgeInsets.fromLTRB(14, 12, 10, 10),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              product['name'] as String,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                fontSize: 17,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            SizedBox(height: 5),
-                            Text(
-                              product['category'] as String,
-                              style: TextStyle(color: Colors.grey),
-                            ),
-                            Spacer(),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Flexible(
-                                  child: Text(
-                                    'Rp${product['price']}',
-                                    style: TextStyle(
-                                      color: Colors.orange,
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  width: 42,
-                                  height: 42,
-                                  decoration: BoxDecoration(
-                                    color: Colors.orange,
-                                    borderRadius: BorderRadius.circular(14),
-                                  ),
-                                  child: Icon(Icons.add, color: Colors.white),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    Icon(Icons.chevron_right, color: Colors.grey.shade500),
                   ],
                 ),
               );
@@ -442,22 +379,244 @@ class Flex5 extends StatelessWidget {
     );
   }
 
-  AppBar _appBar() {
-    return AppBar(
-      title: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+  Widget _serviceCard(
+    IconData icon,
+    String title,
+    String firstText,
+    String secondText,
+  ) {
+    return Container(
+      height: 60,
+      padding: const EdgeInsets.symmetric(horizontal: 9),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(13),
+        border: Border.all(color: Colors.grey.shade200),
+      ),
+      child: Row(
         children: [
-          Text(
-            "KantinKampus",
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+          Container(
+            width: 30,
+            height: 30,
+            decoration: BoxDecoration(
+              color: Colors.orange.shade50,
+              shape: BoxShape.circle,
+            ),
+            child: Icon(icon, color: Colors.orange, size: 17),
           ),
-          Text(
-            "Makan Enak, Harga Bersahabat",
-            style: TextStyle(fontSize: 11, color: Colors.grey),
+          const SizedBox(width: 7),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontSize: 10,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                if (firstText.isNotEmpty)
+                  Text(
+                    firstText,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(fontSize: 9, color: Colors.grey.shade500),
+                  ),
+                if (secondText.isNotEmpty)
+                  Text(
+                    secondText,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(fontSize: 9, color: Colors.grey.shade500),
+                  ),
+              ],
+            ),
           ),
         ],
       ),
-      actions: [IconButton(onPressed: () {}, icon: Icon(Icons.shopping_cart))],
+    );
+  }
+
+  Widget _sectionTitle(String title, String action) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            title,
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          ),
+          Text(
+            action,
+            style: const TextStyle(color: Colors.orange, fontSize: 11),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _productCard(Map<String, dynamic> product) {
+    final bool isAvailable = product['available'] as bool;
+
+    return Container(
+      clipBehavior: Clip.antiAlias,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(15),
+        border: Border.all(color: Colors.grey.shade200),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            flex: 6,
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                Image.network(
+                  product['image'] as String,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Container(color: Colors.orange.shade100);
+                  },
+                ),
+                Positioned(
+                  top: 7,
+                  left: 7,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 6,
+                      vertical: 3,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Row(
+                      children: [
+                        const Icon(Icons.star, color: Colors.amber, size: 12),
+                        const SizedBox(width: 3),
+                        Text(
+                          '${product['rating']}',
+                          style: const TextStyle(fontSize: 9),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned(
+                  right: 7,
+                  bottom: 7,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 4,
+                    ),
+                    decoration: BoxDecoration(
+                      color: isAvailable ? Colors.green : Colors.redAccent,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Text(
+                      isAvailable ? 'Tersedia' : 'Habis',
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 9,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            flex: 4,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(8, 7, 8, 6),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    product['name'] as String,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 3),
+                  Text(
+                    product['category'] as String,
+                    style: TextStyle(fontSize: 9, color: Colors.grey.shade500),
+                  ),
+                  const Spacer(),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          'Rp${product['price']}',
+                          style: const TextStyle(
+                            color: Colors.orange,
+                            fontSize: 11,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: 27,
+                        height: 27,
+                        decoration: BoxDecoration(
+                          color: isAvailable ? Colors.orange : Colors.grey,
+                          borderRadius: BorderRadius.circular(9),
+                        ),
+                        child: const Icon(
+                          Icons.add,
+                          color: Colors.white,
+                          size: 18,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  AppBar _appBar() {
+    return AppBar(
+      backgroundColor: Colors.white,
+      surfaceTintColor: Colors.white,
+      elevation: 0,
+      titleSpacing: 16,
+      title: const Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'KantinKampus',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          ),
+          Text(
+            'Makan enak, harga bersahabat',
+            style: TextStyle(fontSize: 10, color: Colors.grey),
+          ),
+        ],
+      ),
+      actions: [
+        IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.shopping_cart_outlined, size: 21),
+        ),
+      ],
     );
   }
 }
